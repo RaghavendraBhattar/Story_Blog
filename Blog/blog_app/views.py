@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
+from django.utils.timezone import now
 
 from blog_app.models import Post,Comment
 from django.contrib.auth.decorators import login_required
@@ -18,7 +19,7 @@ class PostListView(ListView):
 
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return Post.objects.filter(published_date__lte=timezone.now).order_by('-published_date')
 
     template_name='post_list.html'
 
